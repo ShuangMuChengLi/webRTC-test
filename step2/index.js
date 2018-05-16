@@ -31,7 +31,6 @@ function start() {
 function call() {
     pc1 = new RTCPeerConnection(configuration);
     pc1.onicecandidate = function (e) {
-        console.log("pc1.onicecandidate ")
         socket.emit("tellIceCandidateToPC1",{target:"pc2",data: e.candidate});
     };
     addTrack();
@@ -39,18 +38,10 @@ function call() {
 }
 
 function addTrack() {
-    localStream.getTracks().forEach(
-        function (track) {
-            pc1.addTrack(
-                track,
-                localStream
-            );
-        }
-    );
+    pc1.addStream(localStream);
 }
 
 function getReady() {
-    console.log("getReady")
     // return;
     pc1.createOffer({
         offerToReceiveAudio: 1,
@@ -67,10 +58,8 @@ function getReady() {
 }
 
 function getAnswer(data) {
-    console.log("getAnswer")
     let desc = data.data;
     pc1.setRemoteDescription(desc);
-    console.log("getAnswer")
 }
 
 function getCandidateFromPC2(data) {
