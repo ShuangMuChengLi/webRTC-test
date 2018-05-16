@@ -1,4 +1,6 @@
 # webRTC-test
+官方源码：https://github.com/webrtc/samples/tree/gh-pages/src/content/peerconnection/pc1
+
 webRTC的peerconnection官方demo代码整理，分离出pc1，server，pc2，并用node.js建立信令服务器
 
 
