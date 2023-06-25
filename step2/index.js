@@ -5,11 +5,14 @@ var pc1;
 
 var pc2;
 var configuration = {
-    "iceServers": [{"url": "stun:stun2.1.google.com:19302"}]
+    "iceServers": [
+        { "urls": ["stun:linchaoqun.com:3478"], "username": "linchaoqun", "credential": "g7845120" },
+        { "urls": ["turn:linchaoqun.com:3478"], "username": "linchaoqun", "credential": "g7845120" }
+    ]
 };
 startButton.onclick = start;
 callButton.onclick = call;
-var socket = io('https://localhost?userId=pc1');
+var socket = io('https://linchaoqun.com?userId=pc1');
 socket.on("getCandidateFromPC2",getCandidateFromPC2);
 socket.on("getReady",getReady);
 socket.on("getAnswer",getAnswer);
